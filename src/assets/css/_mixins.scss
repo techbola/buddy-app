@@ -1,0 +1,26 @@
+@mixin button {
+  padding: 8px 16px;
+  border-radius: 6px;
+  border: 1px solid #dde2e4;
+  background-color: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #5b6871;
+  font-weight: 400;
+  font-size: 14px;
+
+  &.outline {
+    border: 1px solid #dde2e4;
+  }
+
+  &.primary {
+    background-color: $primary-color;
+    border: 1px solid $primary-color;
+    color: #ffffff;
+  }
+
+  img {
+    margin-right: 11px;
+  }
+}

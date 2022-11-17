@@ -1,0 +1,34 @@
+@charset "UTF-8";
+@import "variables.scss";
+@import "mixins.scss";
+
+/* Contains global styling applicable to all components */
+body {
+  margin: 0;
+  font-family: "Mulish", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: #5b6871;
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+button {
+  @include button;
+}
+
+.text-primary {
+  color: $primary-color;
+}
+
+.text-white {
+  color: #ffffff;
+}
+
+a {
+  text-decoration: none;
+}
