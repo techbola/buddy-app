@@ -1,0 +1,54 @@
+.input-wrap {
+  position: relative;
+
+  input {
+    display: block;
+    padding: 8px 12px;
+    width: 100%;
+    border: 1px solid #dde2e4;
+    border-radius: 6px;
+    color: #5b6871;
+    font-size: 14px;
+    height: 40px;
+  }
+
+  label {
+    position: absolute;
+    font-weight: 400;
+    color: #5b6871;
+    top: 50%;
+    left: 12px;
+    transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    -webkit-transform: translateY(-50%);
+    cursor: text;
+    user-select: none;
+    transition: 0.15s ease-in-out;
+  }
+
+  input[data-empty="false"] + label,
+  input:valid + label,
+  input:focus + label {
+    top: -10px;
+    left: 0px;
+  }
+
+  input:focus {
+    border-color: $primary-color;
+    outline: none;
+  }
+
+  &.left-icon {
+    input {
+      padding-left: 48px;
+    }
+    img {
+      position: absolute;
+      top: 8px;
+      left: 20px;
+    }
+    label {
+      left: 48px;
+    }
+  }
+}
