@@ -1,4 +1,5 @@
 import React from "react";
+import Loader from "./Loader";
 
 const Button = ({
   type,
@@ -7,6 +8,7 @@ const Button = ({
   iconRight,
   isFullWidth = false,
   style,
+  loading = false,
   handleClick = () => {},
 }) => {
   return (
@@ -15,6 +17,7 @@ const Button = ({
       style={{ minWidth: isFullWidth ? "100%" : "118px", ...style }}
       onClick={handleClick}
     >
+      {loading && <Loader />}
       {iconLeft ? <img src={iconLeft} alt="" /> : null}
       {text}
       {iconRight ? (

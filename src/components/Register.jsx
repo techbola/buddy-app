@@ -1,5 +1,5 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useContext, useEffect, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import AuthLayout from "../layouts/AuthLayout";
 import AuthBox from "./AuthBox";
 import MailIcon from "../assets/icons/envelop.svg";
@@ -7,7 +7,70 @@ import UserIcon from "../assets/icons/user.svg";
 import LockIcon from "../assets/icons/lock.svg";
 import Button from "./Button";
 
+import { registerUrl } from "../lib/urls";
+import { AppContext } from "../AppContext";
+
 const Register = () => {
+  const navigate = useNavigate();
+
+  const [isValid, setIsValid] = useState(false);
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [loading, setLoading] = useState(false);
+
+  const { dispatch } = useContext(AppContext);
+
+  const handleRegister = () => {
+    const data = {
+      first_name: firstName,
+      last_name: lastName,
+      email,
+      password,
+    };
+
+    const requestOptions = {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    };
+
+    setLoading(true);
+
+    fetch(registerUrl, requestOptions)
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.success) {
+          const userData = {
+            userDetails: { email },
+            opt: data.data.opt,
+            token: data.data.token,
+          };
+          dispatch(userData);
+          localStorage.setItem("userData", JSON.stringify(userData));
+          setLoading(false);
+          navigate("/confirm-email");
+        }
+        if (data.errors) {
+          console.log("err", data.errors);
+        }
+      });
+  };
+
+  const checkIfValid = () => {
+    if (!firstName || !lastName || !email || !password) {
+      return setIsValid(false);
+    }
+    setIsValid(true);
+  };
+
+  useEffect(() => {
+    checkIfValid();
+  }, [firstName, lastName, email, password]);
+
   return (
     <AuthLayout>
       <AuthBox
@@ -15,39 +78,42 @@ const Register = () => {
         description="Proceed to create account and setup your organization"
       >
         <div className="content">
-          <div className="form-row-2 mb-3">
-            <div className="input-wrap left-icon">
+          <div className="form-row-2">
+            <div className="input-wrap left-icon mb-3">
               <input
                 type="text"
                 name="firstName"
                 className="form-input"
                 id="firstName"
                 required
+                onChange={(e) => setFirstName(e.target.value)}
               />
               <label htmlFor="firstName">First name</label>
               <img src={UserIcon} alt="first name" />
             </div>
 
-            <div className="input-wrap left-icon">
+            <div className="input-wrap left-icon mb-3">
               <input
                 type="text"
                 name="lastName"
                 className="form-input"
                 id="lastName"
                 required
+                onChange={(e) => setLastName(e.target.value)}
               />
               <label htmlFor="lastName">Last name</label>
               <img src={UserIcon} alt="last name" />
             </div>
           </div>
 
-          <div className="input-wrap left-icon mb-3">
+          <div className="input-wrap left-icon mb-6">
             <input
               type="email"
               name="email"
               className="form-input"
               id="email"
               required
+              onChange={(e) => setEmail(e.target.value)}
             />
             <label htmlFor="email">Email</label>
             <img src={MailIcon} alt="email" />
@@ -60,16 +126,19 @@ const Register = () => {
               className="form-input"
               id="password"
               required
+              onChange={(e) => setPassword(e.target.value)}
             />
             <label htmlFor="password">Password</label>
             <img src={LockIcon} alt="password" />
           </div>
 
           <Button
-            type="disable"
+            type={isValid ? "primary" : "disable"}
             isFullWidth
             text="Create account"
             style={{ marginTop: "30px" }}
+            handleClick={handleRegister}
+            loading={loading}
           />
 
           <p className="terms">

@@ -1,18 +1,27 @@
-import React from "react";
-import { Link, useNavigate } from "react-router-dom";
+import React, { useContext } from "react";
+import { useNavigate } from "react-router-dom";
 import AuthLayout from "../layouts/AuthLayout";
 import ConfirmBox from "./ConfirmBox";
 import SentMailIcon from "../assets/icons/sent-email.svg";
 import Button from "./Button";
+import { AppContext } from "../AppContext";
 
 const Login = () => {
   const navigate = useNavigate();
-  const description = `We’ve sent an email to seyi@zojatech.com with an OTP to confirm your account. Check your inbox to  activate your account.`;
+  const { userDetails } = useContext(AppContext);
+  const Description = () => {
+    return (
+      <span>
+        We’ve sent an email to <strong>{userDetails.email}</strong> with an OTP
+        to confirm your account. Check your inbox to activate your account.
+      </span>
+    );
+  };
   return (
     <AuthLayout>
       <ConfirmBox
         header="Check your mailbox"
-        description={description}
+        description={<Description />}
         icon={SentMailIcon}
       >
         <Button
