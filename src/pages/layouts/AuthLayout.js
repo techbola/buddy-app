@@ -1,6 +1,6 @@
 import React from "react";
-import logo from "../assets/icons/logo.svg";
-import CheckIcon from "../assets/icons/check.svg";
+import logo from "../../assets/icons/logo.svg";
+import CheckIcon from "../../assets/icons/check.svg";
 
 const AuthLayout = ({ children }) => {
   return (

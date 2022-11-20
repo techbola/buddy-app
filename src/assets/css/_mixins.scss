@@ -21,6 +21,14 @@
     color: $shade-white;
   }
 
+  &.warning {
+    background: rgba(255, 134, 0, 0.16);
+    border: 1px solid rgba(255, 134, 0, 0.16);
+    border-radius: 12px;
+    color: $primary-color;
+    font-weight: 500;
+  }
+
   &.disable {
     background-color: $disabled-color;
     border: 1px solid $disabled-color;

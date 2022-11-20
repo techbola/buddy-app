@@ -1,9 +1,9 @@
 import React, { useContext } from "react";
 import { useNavigate } from "react-router-dom";
-import AuthLayout from "../layouts/AuthLayout";
-import ConfirmBox from "./ConfirmBox";
+import AuthLayout from "../pages/layouts/AuthLayout";
+import ConfirmBox from "../components/ConfirmBox";
 import SentMailIcon from "../assets/icons/sent-email.svg";
-import Button from "./Button";
+import Button from "../components/Button";
 import { AppContext } from "../AppContext";
 
 const Login = () => {

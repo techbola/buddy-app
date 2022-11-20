@@ -1,25 +1,41 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Routes, Route } from "react-router-dom";
-import Register from "./components/Register";
-import Login from "./components/Login";
-import Home from "./components/Home";
-import EmailVerified from "./components/EmailVerified";
-import ConfirmCode from "./components/ConfirmCode";
-import ConfirmEmail from "./components/ConfirmEmail";
-import Dashboard from "./components/Dashboard";
+import Register from "./pages/Register";
+import Login from "./pages/Login";
+import Home from "./pages/Home";
+import EmailVerified from "./pages/EmailVerified";
+import ConfirmCode from "./pages/ConfirmCode";
+import ConfirmEmail from "./pages/ConfirmEmail";
+import Dashboard from "./pages/Dashboard";
+import { AppContext } from "./AppContext";
+import NotAuthenticated from "./components/NotAuthenticated";
 
-const routes = () => {
+const UnauthenticatedRoutes = () => {
   return (
     <Routes>
-      <Route path="/dashboard" element={<Dashboard />} />
       <Route path="/email-verified" element={<EmailVerified />} />
       <Route path="/verify-code" element={<ConfirmCode />} />
       <Route path="/confirm-email" element={<ConfirmEmail />} />
       <Route path="/login" element={<Login />} />
       <Route path="/register" element={<Register />} />
       <Route path="/" element={<Home />} />
+      <Route path="/*" element={<NotAuthenticated />} />
     </Routes>
   );
 };
 
-export default routes;
+const AuthenticatedRoutes = () => {
+  return (
+    <Routes>
+      <Route path="/dashboard" element={<Dashboard />} />
+      <Route path="/*" element={<Dashboard />} />
+    </Routes>
+  );
+};
+
+const MainRoutes = () => {
+  const { isLoggedIn } = useContext(AppContext);
+  return isLoggedIn ? <AuthenticatedRoutes /> : <UnauthenticatedRoutes />;
+};
+
+export default MainRoutes;

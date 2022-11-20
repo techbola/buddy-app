@@ -1,10 +1,10 @@
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
-import AuthLayout from "../layouts/AuthLayout";
-import AuthBox from "./AuthBox";
+import AuthLayout from "./layouts/AuthLayout";
+import AuthBox from "../components/AuthBox";
 import MailIcon from "../assets/icons/email.svg";
 import GoogleIcon from "../assets/icons/google.svg";
-import Button from "./Button";
+import Button from "../components/Button";
 
 const Divider = () => {
   return (

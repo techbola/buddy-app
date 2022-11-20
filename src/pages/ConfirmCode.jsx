@@ -1,14 +1,14 @@
 import React, { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import AuthLayout from "../layouts/AuthLayout";
-import ConfirmBox from "./ConfirmBox";
-import Button from "./Button";
+import AuthLayout from "./layouts/AuthLayout";
+import ConfirmBox from "../components/ConfirmBox";
+import Button from "../components/Button";
 import { AppContext } from "../AppContext";
 import { verifyUrl } from "../lib/urls";
 
 const ConfirmCode = () => {
   const navigate = useNavigate();
-  const { userDetails, opt } = useContext(AppContext);
+  const { userDetails, opt, token } = useContext(AppContext);
   const codes = `${opt}`.split("");
   const Description = () => {
     return (
@@ -18,6 +18,8 @@ const ConfirmCode = () => {
       </span>
     );
   };
+
+  const { dispatch } = useContext(AppContext);
 
   const [loading, setLoading] = useState(false);
 
@@ -30,6 +32,7 @@ const ConfirmCode = () => {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
       },
       body: JSON.stringify(data),
     };
@@ -40,12 +43,18 @@ const ConfirmCode = () => {
       .then((res) => res.json())
       .then((data) => {
         if (data.success) {
-          setLoading(false);
+          dispatch({ isLoggedIn: true });
           navigate("/email-verified");
         }
         if (data.errors) {
           console.log("err", data.errors);
         }
+      })
+      .catch((errors) => {
+        console.log("err", errors);
+      })
+      .finally(() => {
+        setLoading(false);
       });
   };
 

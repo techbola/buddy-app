@@ -1,11 +1,11 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import AuthLayout from "../layouts/AuthLayout";
-import AuthBox from "./AuthBox";
+import AuthLayout from "../pages/layouts/AuthLayout";
+import AuthBox from "../components/AuthBox";
 import MailIcon from "../assets/icons/envelop.svg";
 import UserIcon from "../assets/icons/user.svg";
 import LockIcon from "../assets/icons/lock.svg";
-import Button from "./Button";
+import Button from "../components/Button";
 
 import { registerUrl } from "../lib/urls";
 import { AppContext } from "../AppContext";
@@ -48,15 +48,21 @@ const Register = () => {
             userDetails: { email },
             opt: data.data.opt,
             token: data.data.token,
+            isLoggedIn: false,
           };
           dispatch(userData);
           localStorage.setItem("userData", JSON.stringify(userData));
-          setLoading(false);
           navigate("/confirm-email");
         }
         if (data.errors) {
           console.log("err", data.errors);
         }
+      })
+      .catch((errors) => {
+        console.log("err", errors);
+      })
+      .finally(() => {
+        setLoading(false);
       });
   };
 

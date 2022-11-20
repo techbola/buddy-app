@@ -7,6 +7,7 @@ const useController = () => {
     userDetails: userData ? JSON.parse(userData).userDetails : {},
     opt: userData ? JSON.parse(userData).opt : null,
     token: userData ? JSON.parse(userData).token : null,
+    isLoggedIn: userData ? JSON.parse(userData).isLoggedIn : false,
   };
 
   const [state, dispatch] = React.useReducer(

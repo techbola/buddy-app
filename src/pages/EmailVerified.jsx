@@ -1,9 +1,9 @@
 import React from "react";
-import { Link, useNavigate } from "react-router-dom";
-import AuthLayout from "../layouts/AuthLayout";
-import ConfirmBox from "./ConfirmBox";
+import { useNavigate } from "react-router-dom";
+import AuthLayout from "../pages/layouts/AuthLayout";
+import ConfirmBox from "../components/ConfirmBox";
 import EmailVerifiedIcon from "../assets/icons/envelop-check.svg";
-import Button from "./Button";
+import Button from "../components/Button";
 
 const EmailVerified = () => {
   const navigate = useNavigate();
