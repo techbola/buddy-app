@@ -8,7 +8,7 @@ import LockIcon from "../assets/icons/lock.svg";
 import Button from "../components/Button";
 
 import { registerUrl } from "../lib/urls";
-import { AppContext } from "../AppContext";
+import { AppContext } from "../lib/AppContext";
 
 const Register = () => {
   const navigate = useNavigate();

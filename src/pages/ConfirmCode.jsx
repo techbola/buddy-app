@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import AuthLayout from "./layouts/AuthLayout";
 import ConfirmBox from "../components/ConfirmBox";
 import Button from "../components/Button";
-import { AppContext } from "../AppContext";
+import { AppContext } from "../lib/AppContext";
 import { verifyUrl } from "../lib/urls";
 
 const ConfirmCode = () => {

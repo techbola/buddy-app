@@ -4,7 +4,7 @@ import AuthLayout from "../pages/layouts/AuthLayout";
 import ConfirmBox from "../components/ConfirmBox";
 import SentMailIcon from "../assets/icons/sent-email.svg";
 import Button from "../components/Button";
-import { AppContext } from "../AppContext";
+import { AppContext } from "../lib/AppContext";
 
 const Login = () => {
   const navigate = useNavigate();

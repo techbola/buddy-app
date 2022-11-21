@@ -7,7 +7,7 @@ import EmailVerified from "./pages/EmailVerified";
 import ConfirmCode from "./pages/ConfirmCode";
 import ConfirmEmail from "./pages/ConfirmEmail";
 import Dashboard from "./pages/Dashboard";
-import { AppContext } from "./AppContext";
+import { AppContext } from "./lib/AppContext";
 import NotAuthenticated from "./components/NotAuthenticated";
 
 const UnauthenticatedRoutes = () => {

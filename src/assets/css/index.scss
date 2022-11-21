@@ -3,7 +3,7 @@
 @import "mixins.scss";
 @import "./input.scss";
 @import "./auth.scss";
-@import "./dashboard.scss";
+@import "./dashboard/index.scss";
 
 /* Contains global styling applicable to all components */
 body {
@@ -62,4 +62,8 @@ a {
 
 .mb-6 {
   margin-bottom: 32px;
+}
+
+.bg-warning-light {
+  background-color: #fff0e0;
 }

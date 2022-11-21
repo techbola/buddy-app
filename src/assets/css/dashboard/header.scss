@@ -1,0 +1,43 @@
+header {
+  grid-column: 3 / span 10;
+  background-color: transparent;
+  height: 48px;
+  margin-top: 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  h1 {
+    color: $text-black;
+    font-weight: 700;
+    font-size: 25px;
+  }
+
+  .actions {
+    display: flex;
+    align-items: center;
+
+    .search {
+      width: 422px;
+      height: 48px;
+      border: none;
+      border-radius: 16px;
+      padding-left: 45px;
+      background: url("../../icons/search.svg") no-repeat left;
+      background-color: $shade-white;
+      background-position: 16px;
+
+      &::placeholder {
+        font-weight: 500;
+        font-size: 14px;
+      }
+    }
+
+    img {
+      padding: 17px;
+      margin-left: 16px;
+      background: $shade-white;
+      border-radius: 50px;
+    }
+  }
+}

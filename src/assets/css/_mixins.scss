@@ -21,6 +21,11 @@
     color: $shade-white;
   }
 
+  &.secondary {
+    background-color: #f6f6f6;
+    border: 1px solid #f6f6f6;
+  }
+
   &.warning {
     background: rgba(255, 134, 0, 0.16);
     border: 1px solid rgba(255, 134, 0, 0.16);

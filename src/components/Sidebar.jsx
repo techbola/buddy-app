@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { AppContext } from "../AppContext";
+import { AppContext } from "../lib/AppContext";
 import { useNavigate } from "react-router-dom";
 
 import logo from "../assets/icons/logo.svg";
