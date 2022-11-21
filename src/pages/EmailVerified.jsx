@@ -18,7 +18,7 @@ const EmailVerified = () => {
           type="primary"
           text="Continue"
           style={{ margin: "30px auto 38px" }}
-          handleClick={() => navigate("/dashboard")}
+          handleClick={() => navigate("/login")}
         />
       </ConfirmBox>
     </AuthLayout>

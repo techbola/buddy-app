@@ -33,7 +33,8 @@
     left: 0px;
   }
 
-  input:focus {
+  input:focus,
+  input:valid {
     border-color: $primary-color;
     outline: none;
   }

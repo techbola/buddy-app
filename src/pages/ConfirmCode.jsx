@@ -19,8 +19,6 @@ const ConfirmCode = () => {
     );
   };
 
-  const { dispatch } = useContext(AppContext);
-
   const [loading, setLoading] = useState(false);
 
   const handleVerifyCode = () => {
@@ -43,7 +41,6 @@ const ConfirmCode = () => {
       .then((res) => res.json())
       .then((data) => {
         if (data.success) {
-          dispatch({ isLoggedIn: true });
           navigate("/email-verified");
         }
         if (data.errors) {

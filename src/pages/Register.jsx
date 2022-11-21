@@ -9,6 +9,7 @@ import Button from "../components/Button";
 
 import { registerUrl } from "../lib/urls";
 import { AppContext } from "../lib/AppContext";
+import Errors from "../components/Errors";
 
 const Register = () => {
   const navigate = useNavigate();
@@ -19,6 +20,8 @@ const Register = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
+  const [showError, setShowError] = useState(false);
+  const [errors, setErrors] = useState([]);
 
   const { dispatch } = useContext(AppContext);
 
@@ -54,8 +57,17 @@ const Register = () => {
           localStorage.setItem("userData", JSON.stringify(userData));
           navigate("/confirm-email");
         }
-        if (data.errors) {
-          console.log("err", data.errors);
+        if (Object.keys(data.errors).length !== 0) {
+          let allErrors = [];
+          for (const [key, value] of Object.entries(data.errors)) {
+            console.log(`${key}: ${value}`);
+            allErrors.push(...value);
+          }
+          setErrors(allErrors);
+          setShowError(true);
+          setTimeout(() => {
+            setShowError(false);
+          }, 4000);
         }
       })
       .catch((errors) => {
@@ -84,6 +96,7 @@ const Register = () => {
         description="Proceed to create account and setup your organization"
       >
         <div className="content">
+          {showError && <Errors errors={errors} />}
           <div className="form-row-2">
             <div className="input-wrap left-icon mb-3">
               <input

@@ -42,6 +42,13 @@
       width: 489px;
       margin: 160px auto;
 
+      .errors {
+        li {
+          color: red;
+          font-size: 13px;
+        }
+      }
+
       .title {
         margin-bottom: 20px;
         h4 {
